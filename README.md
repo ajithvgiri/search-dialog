@@ -49,5 +49,6 @@ Add the gradle dependency to your `app` module `build.gradle` file:
            }
         });
 ```
+#Screen Shots
 
 ![Search Dialog](https://i.imgur.com/47IHtQH.png)
