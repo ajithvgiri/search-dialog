@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SearchDialog</string>
+    <string name="select_or_search">Select or Search</string>
+    <string name="close">Close</string>
+</resources>

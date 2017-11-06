@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Search Dialog</string>
+    <string name="country">Country</string>
+    <string name="get_code">Get Code</string>
+    <string name="country_name">Country Name</string>
+    <string name="country_code">Country Code</string>
+</resources>
