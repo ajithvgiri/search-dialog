@@ -1,6 +1,7 @@
+[![](https://jitpack.io/v/ajithvgiri/SearchDialog.svg)](https://jitpack.io/#ajithvgiri/SearchDialog)
+
 # SearchDialog
 Android Search Dialog Library
-[![](https://jitpack.io/v/ajithvgiri/SearchDialog.svg)](https://jitpack.io/#ajithvgiri/SearchDialog)
 
 # Setup
 ## 1. Provide the gradle dependency
