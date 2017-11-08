@@ -1,3 +1,4 @@
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Search%20Dialog%20Library-green.svg?style=flat )]( https://android-arsenal.com/details/1/6424 )
 [![](https://jitpack.io/v/ajithvgiri/SearchDialog.svg)](https://jitpack.io/#ajithvgiri/SearchDialog)
 
 # SearchDialog
