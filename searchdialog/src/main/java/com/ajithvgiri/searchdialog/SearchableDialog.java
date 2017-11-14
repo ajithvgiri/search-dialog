@@ -24,7 +24,7 @@ public class SearchableDialog {
     List<SearchListItem> searchListItems;
     Activity activity;
     String dTitle;
-    OnSearchItemSelected onSearchItemSelected;
+    public OnSearchItemSelected onSearchItemSelected;
     AlertDialog alertDialog;
     int position;
     int style;
