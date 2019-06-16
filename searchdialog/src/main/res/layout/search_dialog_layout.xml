@@ -35,6 +35,7 @@
                 android:id="@+id/searchBox"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:textColor="#212121"
                 android:layout_marginLeft="5dp"
                 android:background="@color/white"
                 android:inputType="text" />
