@@ -21,7 +21,7 @@ Add the gradle dependency to your `app` module `build.gradle` file:
 
 ```
 	dependencies {
-	         implementation 'com.github.ajithvgiri:search-dialog:v1.1'
+	        implementation 'com.github.ajithvgiri:search-dialog:v1.2'
 	}
 
 ```
