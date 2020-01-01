@@ -1,4 +1,4 @@
-package com.ajithvgiri.searchdialog;
+package com.ajithvgiri.searchdialogdemo;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;

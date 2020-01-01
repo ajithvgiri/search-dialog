@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.ajithvgiri.searchdialog.MainActivity">
+    tools:context="com.ajithvgiri.searchdialogdemo.MainActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/countryTextInputLayout"

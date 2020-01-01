@@ -1,15 +1,19 @@
-package com.ajithvgiri.searchdialog
+package com.ajithvgiri.searchdialogdemo
 
 import android.os.Bundle
-import com.google.android.material.textfield.TextInputEditText
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.TextView
+import com.ajithvgiri.searchdialog.OnSearchItemSelected
+import com.ajithvgiri.searchdialog.SearchListItem
+import com.ajithvgiri.searchdialog.SearchableDialog
+import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.synthetic.main.country_details.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnSearchItemSelected {
+
 
     lateinit var searchableDialog: SearchableDialog
-    var searchListItems: MutableList<SearchListItem> = ArrayList()
+    var searchListItems: ArrayList<SearchListItem> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,16 +21,16 @@ class MainActivity : AppCompatActivity() {
             val searchListItem = SearchListItem(i, "Country $i")
             searchListItems.add(searchListItem)
         }
-        val countryNameTextView = findViewById<TextView>(R.id.countryNameTextView)
-        val countryCodeTextView = findViewById<TextView>(R.id.countryCodeTextView)
+
         searchableDialog = SearchableDialog(this, searchListItems, getString(R.string.country))
-        searchableDialog.setOnItemSelected { _, searchListItem ->
-            countryCodeTextView.text = searchListItem.getId().toString()
-            countryNameTextView.text = searchListItem.getTitle()
-        }
+
         val countryTextInputEditText = findViewById<TextInputEditText>(R.id.countryTextInputEditText)
         countryTextInputEditText.setOnClickListener { searchableDialog.show() }
 
+    }
 
+    override fun onClick(position: Int, searchListItem: SearchListItem) {
+        countryCodeTextView.text = searchListItem.id.toString()
+        countryNameTextView.text = searchListItem.title
     }
 }

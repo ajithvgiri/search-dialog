@@ -7,13 +7,14 @@ import android.widget.ArrayAdapter
 import android.widget.Filter
 import android.widget.TextView
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by ajithvgiri on 06/11/17.
  */
-class SearchListAdapter(context: Context, resource: Int, textViewResourceId: Int, objects: List<SearchListItem>) : ArrayAdapter<Any?>(context, resource, textViewResourceId, objects) {
-    var searchListItems: List<SearchListItem> = objects
-    var suggestions: MutableList<SearchListItem> = ArrayList()
+class SearchListAdapter(context: Context, resource: Int, textViewResourceId: Int, objects: ArrayList<SearchListItem>) : ArrayAdapter<Any?>(context, resource, textViewResourceId, objects.toList()) {
+    var searchListItems: ArrayList<SearchListItem> = objects
+    var suggestions: ArrayList<SearchListItem> = ArrayList()
     var filter = CustomFilter()
     private val textViewResourceID: Int = textViewResourceId
 
