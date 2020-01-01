@@ -1,6 +1,7 @@
 package com.ajithvgiri.searchdialog
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -12,18 +13,17 @@ import kotlin.collections.ArrayList
 /**
  * Created by ajithvgiri on 06/11/17.
  */
-class SearchListAdapter(context: Context, resource: Int, textViewResourceId: Int, objects: ArrayList<SearchListItem>) : ArrayAdapter<Any?>(context, resource, textViewResourceId, objects.toList()) {
+class SearchListAdapter(context: Context, objects: ArrayList<SearchListItem>) : ArrayAdapter<SearchListItem>(context, R.layout.items_view_layout) {
     var searchListItems: ArrayList<SearchListItem> = objects
     var suggestions: ArrayList<SearchListItem> = ArrayList()
     var filter = CustomFilter()
-    private val textViewResourceID: Int = textViewResourceId
 
     override fun getCount(): Int {
         return searchListItems.size
     }
 
-    override fun getItem(i: Int): Any? {
-        return searchListItems[i].title
+    override fun getItem(i: Int): SearchListItem {
+        return searchListItems[i]
     }
 
     override fun getItemId(i: Int): Long {
@@ -40,8 +40,12 @@ class SearchListAdapter(context: Context, resource: Int, textViewResourceId: Int
         return position
     }
 
-    override fun getView(i: Int, inflateview: View, viewGroup: ViewGroup): View {
-        val tv = inflateview.findViewById<View>(textViewResourceID) as TextView
+    override fun getView(i: Int, view: View, parent: ViewGroup): View {
+        var inflateview = view
+        if (inflateview == null) {
+            inflateview = LayoutInflater.from(context).inflate(R.layout.items_view_layout, parent)
+        }
+        val tv = inflateview.findViewById<View>(R.id.text1) as TextView
         tv.text = searchListItems[i].title
         return inflateview
     }

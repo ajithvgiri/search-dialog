@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity(), OnSearchItemSelected {
         }
 
         searchableDialog = SearchableDialog(this, searchListItems, getString(R.string.country))
+        searchableDialog.setOnItemSelected(this)
+
 
         val countryTextInputEditText = findViewById<TextInputEditText>(R.id.countryTextInputEditText)
         countryTextInputEditText.setOnClickListener { searchableDialog.show() }
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity(), OnSearchItemSelected {
     }
 
     override fun onClick(position: Int, searchListItem: SearchListItem) {
+        searchableDialog.dismiss()
         countryCodeTextView.text = searchListItem.id.toString()
         countryNameTextView.text = searchListItem.title
     }

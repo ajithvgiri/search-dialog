@@ -4,12 +4,13 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.EditText
-import android.widget.ListView
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
 
 /**
  * Created by ajithvgiri on 06/11/17.
@@ -19,12 +20,11 @@ class SearchableDialog {
     var activity: Activity
     private var dialogTitle: String = ""
     private lateinit var onSearchItemSelected: OnSearchItemSelected
-    lateinit var alertDialog: AlertDialog
+    private lateinit var alertDialog: AlertDialog
     private var position = 0
     var style = 0
-    private lateinit var searchListItem: SearchListItem
-    lateinit var adapter: SearchListAdapter
-    lateinit var listView: ListView
+    lateinit var adapter: SearchAdapter
+    lateinit var recyclerView: RecyclerView
 
     constructor(activity: Activity, searchListItems: ArrayList<SearchListItem>, dialogTitle: String) {
         this.searchListItems = searchListItems
@@ -58,29 +58,34 @@ class SearchableDialog {
         val rippleViewClose = view.findViewById<View>(R.id.close) as TextView
         val title = view.findViewById<View>(R.id.spinerTitle) as TextView
         title.text = dialogTitle
-        listView = view.findViewById<View>(R.id.list) as ListView
+        recyclerView = view.findViewById<View>(R.id.list) as RecyclerView
+        val layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = layoutManager
+        val dividerItemDecoration = DividerItemDecoration(recyclerView.context, layoutManager.orientation)
+        recyclerView.addItemDecoration(dividerItemDecoration)
         val searchBox = view.findViewById<View>(R.id.searchBox) as EditText
-        adapter = SearchListAdapter(activity, R.layout.items_view_layout, R.id.text1, searchListItems)
-        listView.adapter = adapter
+        adapter = SearchAdapter(onSearchItemSelected,searchListItems)
+        recyclerView.adapter = adapter
         adb.setView(view)
         alertDialog = adb.create()
         alertDialog.window?.attributes?.windowAnimations = style //R.style.DialogAnimations_SmileWindow;
         alertDialog.setCancelable(false)
-        listView.onItemClickListener = OnItemClickListener { _, view, _, _ ->
-            val t = view.findViewById<TextView>(R.id.text1)
-            for (j in searchListItems.indices) {
-                if (t.text.toString().equals(searchListItems[j].toString(), ignoreCase = true)) {
-                    position = j
-                    searchListItem = searchListItems[position]
-                }
-            }
-            try {
-                onSearchItemSelected
-            } catch (e: Exception) {
-                Log.e(TAG, e.message)
-            }
-            alertDialog.dismiss()
-        }
+
+//        listView.onItemClickListener = OnItemClickListener { _, _view, _, _ ->
+//            val t = _view.findViewById<TextView>(R.id.text1)
+//            for (j in searchListItems.indices) {
+//                if (t.text.toString().equals(searchListItems[j].toString(), ignoreCase = true)) {
+//                    position = j
+//                    searchListItem = searchListItems[position]
+//                }
+//            }
+//            try {
+//                onSearchItemSelected
+//            } catch (e: Exception) {
+//                Log.e(TAG, e.message)
+//            }
+//            alertDialog.dismiss()
+//        }
         searchBox.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
@@ -92,8 +97,8 @@ class SearchableDialog {
                         filteredValues.add(item)
                     }
                 }
-                adapter = SearchListAdapter(activity, R.layout.items_view_layout, R.id.text1, filteredValues)
-                listView.adapter = adapter
+                adapter = SearchAdapter(onSearchItemSelected,filteredValues)
+                recyclerView.adapter = adapter
             }
         })
         rippleViewClose.setOnClickListener { alertDialog.dismiss() }
@@ -114,6 +119,14 @@ class SearchableDialog {
      */
     fun refresh() {
         adapter.notifyDataSetChanged()
+    }
+
+    /***
+     *
+     * dismiss the dialog
+     */
+    fun dismiss(){
+        alertDialog.dismiss()
     }
 
     companion object {
