@@ -35,10 +35,11 @@
                 android:id="@+id/searchBox"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:textColor="#212121"
+                android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:background="@color/white"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textColor="#212121" />
 
         </LinearLayout>
 
@@ -52,14 +53,15 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:divider="@color/color_divider"
-            android:dividerHeight="0.1dp"></ListView>
+            android:dividerHeight="0.1dp" />
 
         <TextView
             android:id="@+id/close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:clickable="true"
+            android:focusable="true"
             android:padding="5dp"
             android:text="@string/close"
             android:textAllCaps="true" />
