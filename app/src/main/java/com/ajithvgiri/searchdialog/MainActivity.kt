@@ -1,8 +1,8 @@
 package com.ajithvgiri.searchdialog
 
 import android.os.Bundle
-import android.support.design.widget.TextInputEditText
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 
 
@@ -28,8 +28,5 @@ class MainActivity : AppCompatActivity() {
         countryTextInputEditText.setOnClickListener { searchableDialog.show() }
 
 
-
     }
-
-
 }
