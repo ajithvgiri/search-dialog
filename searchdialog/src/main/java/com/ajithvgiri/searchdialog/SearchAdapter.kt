@@ -30,6 +30,9 @@ class SearchAdapter(var onSearchItemSelected: OnSearchItemSelected, private var 
             itemView.text1.setOnClickListener {
                 onSearchItemSelected.onClick(position = position, searchListItem = searchListItem)
             }
+            itemView.row.setOnClickListener {
+                onSearchItemSelected.onClick(position = position, searchListItem = searchListItem)
+            }
         }
     }
 }
