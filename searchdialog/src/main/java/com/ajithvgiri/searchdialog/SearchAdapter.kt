@@ -24,7 +24,7 @@ class SearchAdapter(var onSearchItemSelected: OnSearchItemSelected, private var 
         holder.bind(searchListItem, onSearchItemSelected, position)
     }
 
-    class SearchAdapterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    public class SearchAdapterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(searchListItem: SearchListItem, onSearchItemSelected: OnSearchItemSelected, position: Int) {
             itemView.text1.text = searchListItem.title
             itemView.text1.setOnClickListener {

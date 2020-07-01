@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Created by ajithvgiri on 06/11/17.
  */
-class SearchableDialog {
+public class SearchableDialog {
     var searchListItems: ArrayList<SearchListItem>
     var activity: Activity
     private var dialogTitle: String = ""
@@ -44,7 +44,7 @@ class SearchableDialog {
      * @param searchItemSelected
      * return selected position & item
      */
-    fun setOnItemSelected(searchItemSelected: OnSearchItemSelected) {
+    public fun setOnItemSelected(searchItemSelected: OnSearchItemSelected) {
         onSearchItemSelected = searchItemSelected
     }
 
@@ -71,21 +71,6 @@ class SearchableDialog {
         alertDialog.window?.attributes?.windowAnimations = style //R.style.DialogAnimations_SmileWindow;
         alertDialog.setCancelable(false)
 
-//        listView.onItemClickListener = OnItemClickListener { _, _view, _, _ ->
-//            val t = _view.findViewById<TextView>(R.id.text1)
-//            for (j in searchListItems.indices) {
-//                if (t.text.toString().equals(searchListItems[j].toString(), ignoreCase = true)) {
-//                    position = j
-//                    searchListItem = searchListItems[position]
-//                }
-//            }
-//            try {
-//                onSearchItemSelected
-//            } catch (e: Exception) {
-//                Log.e(TAG, e.message)
-//            }
-//            alertDialog.dismiss()
-//        }
         searchBox.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
