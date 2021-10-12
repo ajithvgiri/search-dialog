@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.items_view_layout.view.*
 
-
 class SearchAdapter(var onSearchItemSelected: OnSearchItemSelected, private var list: ArrayList<SearchListItem>) : RecyclerView.Adapter<SearchAdapter.SearchAdapterViewHolder>() {
 
 
