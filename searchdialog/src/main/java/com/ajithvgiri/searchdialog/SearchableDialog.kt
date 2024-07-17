@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -61,15 +60,13 @@ class SearchableDialog {
         recyclerView = view.findViewById<View>(R.id.list) as RecyclerView
         val layoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = layoutManager
-        val dividerItemDecoration = DividerItemDecoration(recyclerView.context, layoutManager.orientation)
-        recyclerView.addItemDecoration(dividerItemDecoration)
         val searchBox = view.findViewById<View>(R.id.searchBox) as EditText
         adapter = SearchAdapter(onSearchItemSelected,searchListItems)
         recyclerView.adapter = adapter
         adb.setView(view)
         alertDialog = adb.create()
         alertDialog.window?.attributes?.windowAnimations = style //R.style.DialogAnimations_SmileWindow;
-        alertDialog.setCancelable(false)
+        alertDialog.setCancelable(true)
 
 //        listView.onItemClickListener = OnItemClickListener { _, _view, _, _ ->
 //            val t = _view.findViewById<TextView>(R.id.text1)

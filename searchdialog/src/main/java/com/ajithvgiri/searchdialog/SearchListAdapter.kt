@@ -13,7 +13,11 @@ import kotlin.collections.ArrayList
 /**
  * Created by ajithvgiri on 06/11/17.
  */
-class SearchListAdapter(context: Context, objects: ArrayList<SearchListItem>) : ArrayAdapter<SearchListItem>(context, R.layout.items_view_layout) {
+class SearchListAdapter(context: Context, objects: ArrayList<SearchListItem>) :
+    ArrayAdapter<SearchListItem>(
+        context,
+        R.layout.items_view_layout
+    ) {
     var searchListItems: ArrayList<SearchListItem> = objects
     var suggestions: ArrayList<SearchListItem> = ArrayList()
     var filter = CustomFilter()
@@ -40,15 +44,17 @@ class SearchListAdapter(context: Context, objects: ArrayList<SearchListItem>) : 
         return position
     }
 
-    override fun getView(i: Int, view: View, parent: ViewGroup): View {
-        var inflateview = view
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var inflateview = convertView
         if (inflateview == null) {
             inflateview = LayoutInflater.from(context).inflate(R.layout.items_view_layout, parent)
         }
-        val tv = inflateview.findViewById<View>(R.id.text1) as TextView
-        tv.text = searchListItems[i].title
-        return inflateview
+        val tv = inflateview?.findViewById<View>(R.id.text1) as TextView
+        tv.text = searchListItems[position].title
+        return inflateview!!
     }
+
+
 
     override fun getFilter(): Filter {
         return filter
@@ -59,12 +65,15 @@ class SearchListAdapter(context: Context, objects: ArrayList<SearchListItem>) : 
             suggestions.clear()
             constraint.let {
                 for (i in searchListItems.indices) {
-                    if (searchListItems[i].title.toLowerCase(Locale.ENGLISH).contains(constraint)) { // Compare item in original searchListItems if it contains constraints.
+                    if (searchListItems[i].title.toLowerCase(Locale.ENGLISH)
+                            .contains(constraint)
+                    ) { // Compare item in original searchListItems if it contains constraints.
                         suggestions.add(searchListItems[i]) // If TRUE add item in Suggestions.
                     }
                 }
             }
-            val results = FilterResults() // Create new Filter Results and return this to publishResults;
+            val results =
+                FilterResults() // Create new Filter Results and return this to publishResults;
             results.values = suggestions
             results.count = suggestions.size
             return results
